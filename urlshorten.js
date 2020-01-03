@@ -4,7 +4,6 @@ function sample(array) {
 }
 
 function shortenURL() {
-  console.log('This function will shorten URL')
   const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz'
   const upperCaseLetters = lowerCaseLetters.toUpperCase()
   const numbers = '1234567890'

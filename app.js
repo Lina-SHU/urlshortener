@@ -30,7 +30,19 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
   const shortener = urlShorten(req.body)
-  res.render('index', { shortener: shortener })
+
+
+  const url_shorten = new Urlshorten({
+    url_origin: req.body.urlshorten,
+    url_shorten: shortener
+  })
+  // 存入資料庫
+  url_shorten.save(err => {
+    if (err) return console.error(err)
+    res.render('index', { shortener: shortener })
+  })
+
+
 })
 
 app.listen(port, () => {

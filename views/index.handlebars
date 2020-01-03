@@ -7,6 +7,7 @@
           <h1 class="card-title">URL Shortener<i class="fas fa-link"></i></h1>
           <hr>
           <form method="POST" action="/">
+            {{#unless shortener}}
             <div class="form-group form-row">
               <div class="col">
                 <input type="url" name="urlshorten" class="form-control" id="exclude-characters"
@@ -15,6 +16,7 @@
             </div>
 
             <button class="btn btn-success" type="submit">Shorten</button>
+            {{/unless}}
             {{#if shortener}}
             <div class="alert alert-info" role="alert">
               <span class="mr-2">Success! Please use this link:</span> <code>{{shortener}}</code>

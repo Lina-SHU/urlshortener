@@ -11,4 +11,4 @@ const shortenSchema = new Schema({
   }
 })
 
-module.exports = mongoose.model('Todo', shortenSchema)
+module.exports = mongoose.model('Urlshorten', shortenSchema)
