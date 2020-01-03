@@ -7,6 +7,11 @@
           <h1 class="card-title">URL Shortener<i class="fas fa-link"></i></h1>
           <hr>
           <form method="POST" action="/">
+            {{#if warning}}
+            <div class="alert alert-info" role="alert">
+              <div class="mr-2">{{warning}}</div>
+            </div>
+            {{/if}}
             {{#unless shortener}}
             <div class="form-group form-row">
               <div class="col">
