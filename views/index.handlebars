@@ -23,9 +23,11 @@
             <button class="btn btn-success" type="submit">Shorten</button>
             {{/unless}}
             {{#if shortener}}
-            <div class="alert alert-primary" role="alert">
-              <div class="mr-5">Success! Please use this link:</div>
-              <div id="copyurl">{{shortener}}</div>
+            <div class="mb-3">
+              <h5 class="text-lg font-weight-bold">Success! Please use this link:</h5>
+            </div>
+            <div class="mb-3">
+              <h6 id="copyurl" class="font-weight-bold text-primary">{{shortener}}</h6>
             </div>
             <button class="btn btn-success" id="copy" data-clipboard-target="#copyurl" type="button">Copy</button>
             <script>
