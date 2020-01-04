@@ -57,6 +57,20 @@ app.post('/', (req, res) => {
   }
 })
 
+app.get('/:id', (req, res) => {
+  //turn to the url webpage
+  Urlshorten.findOne({ url_shorten: req.params.id }, (err, url) => {
+    if (err) return console.error(err)
+
+    if (url) {
+      return res.redirect(url.url_origin)
+    } else {
+      const warning = '該短網址未存在'
+      return res.render('index', { warning: warning })
+    }
+  })
+})
+
 app.listen(port, () => {
   console.log(`Express app listening on port ${port}.`)
 })

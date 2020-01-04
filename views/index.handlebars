@@ -8,7 +8,7 @@
           <hr>
           <form method="POST" action="/">
             {{#if warning}}
-            <div class="alert alert-info" role="alert">
+            <div class="alert alert-danger" role="alert">
               <div class="mr-2">{{warning}}</div>
             </div>
             {{/if}}
@@ -23,7 +23,7 @@
             <button class="btn btn-success" type="submit">Shorten</button>
             {{/unless}}
             {{#if shortener}}
-            <div class="alert alert-info" role="alert">
+            <div class="alert alert-primary" role="alert">
               <span class="mr-2">Success! Please use this link:</span> <code>{{shortener}}</code>
             </div>
             {{/if}}
