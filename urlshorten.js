@@ -16,7 +16,7 @@ function shortenURL() {
   for (let i = 0; i < 5; i++) {
     shortenWords += sample(collection)
   }
-  return `http://localhost:3000/${shortenWords}`
+  return shortenWords
 }
 
 module.exports = shortenURL

@@ -37,7 +37,7 @@ app.post('/', (req, res) => {
       if (err) return console.error(err)
 
       if (url) {
-        return res.render('index', { shortener: url.url_shorten })
+        return res.render('index', { shortener: `http://localhost:3000/${url.url_shorten}` })
       } else {
         // 存入資料庫
         const url_shorten = new Urlshorten({
@@ -46,7 +46,7 @@ app.post('/', (req, res) => {
         })
         url_shorten.save(err => {
           if (err) return console.error(err)
-          return res.render('index', { shortener: shortener })
+          return res.render('index', { shortener: `http://localhost:3000/${shortener}` })
         })
       }
     })
