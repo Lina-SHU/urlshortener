@@ -1,7 +1,7 @@
 # 短網址產生器
 此專案提供短網址產生器，幫助縮短網址以利使用者記錄，並提供Copy按鈕幫助快速複製。
 
-![urlshortener]](https://github.com/Lina-SHU/urlshortener/blob/master/A30Q4.png)
+![urlshortener](https://github.com/Lina-SHU/urlshortener/blob/master/A30Q4.png)
 
 ----
 ## 專案說明
