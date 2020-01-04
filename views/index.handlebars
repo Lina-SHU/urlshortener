@@ -24,8 +24,13 @@
             {{/unless}}
             {{#if shortener}}
             <div class="alert alert-primary" role="alert">
-              <span class="mr-2">Success! Please use this link:</span> <code>{{shortener}}</code>
+              <div class="mr-5">Success! Please use this link:</div>
+              <div id="copyurl">{{shortener}}</div>
             </div>
+            <button class="btn btn-success" id="copy" data-clipboard-target="#copyurl" type="button">Copy</button>
+            <script>
+              new Clipboard("#copy")
+            </script>
             {{/if}}
           </form>
         </div>

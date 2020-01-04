@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const urlShorten = require('./urlshorten')
 const Urlshorten = require('./models/urlshorten')
+const clipboard = require('clipboard')
 const port = 3000
 
 app.engine('handlebars', exhbs({ defaultLayout: 'main' }))
