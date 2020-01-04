@@ -31,21 +31,30 @@ app.post('/', (req, res) => {
   //判斷輸入的url是否為空
   if (req.body.urlshorten) {
     const shortener = urlShorten(req.body)
-    const url_shorten = new Urlshorten({
-      url_origin: req.body.urlshorten,
-      url_shorten: shortener
-    })
-    // 存入資料庫
-    url_shorten.save(err => {
+
+    //判斷產生過的短網址
+    Urlshorten.findOne({ url_shorten: shortener }, (err, url) => {
       if (err) return console.error(err)
-      res.render('index', { shortener: shortener })
+
+      if (url) {
+        return res.render('index', { shortener: url.url_shorten })
+      } else {
+        // 存入資料庫
+        const url_shorten = new Urlshorten({
+          url_origin: req.body.urlshorten,
+          url_shorten: shortener
+        })
+        url_shorten.save(err => {
+          if (err) return console.error(err)
+          return res.render('index', { shortener: shortener })
+        })
+      }
     })
   } else {
     //若為空則提醒使用者須先輸入url
     const warning = '請先輸入要縮短的URL網址'
-    res.render('index', { warning: warning })
+    return res.render('index', { warning: warning })
   }
-
 })
 
 app.listen(port, () => {
