@@ -13,7 +13,10 @@ app.set('view engine', 'handlebars')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
-mongoose.connect('mongodb://localhost/urlshorten', { useUnifiedTopology: true, useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/urlshorten', {
+  useUnifiedTopology: true, useNewUrlParser: true,
+  useCreateIndex: true
+})
 const db = mongoose.connection
 
 db.on('error', () => {
@@ -38,7 +41,7 @@ app.post('/', (req, res) => {
       if (err) return console.error(err)
 
       if (url) {
-        return res.render('index', { shortener: `http://localhost:3000/${url.url_shorten}` })
+        return res.render('index', { shortener: `https://pacific-fortress-07436.herokuapp.com/${url.url_shorten}` })
       } else {
         // 存入資料庫
         const url_shorten = new Urlshorten({
@@ -47,7 +50,7 @@ app.post('/', (req, res) => {
         })
         url_shorten.save(err => {
           if (err) return console.error(err)
-          return res.render('index', { shortener: `http://localhost:3000/${shortener}` })
+          return res.render('index', { shortener: `https://pacific-fortress-07436.herokuapp.com/${shortener}` })
         })
       }
     })
@@ -72,6 +75,6 @@ app.get('/:id', (req, res) => {
   })
 })
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Express app listening on port ${port}.`)
 })
