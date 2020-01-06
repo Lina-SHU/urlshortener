@@ -33,24 +33,26 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
   //判斷輸入的url是否為空
-  if (req.body.urlshorten) {
+  if (req.body.originURL) {
+    //產生短網址
     const shortener = urlShorten(req.body)
-
-    //判斷產生過的短網址
+    //判斷是否有產生過的這組短網址
     Urlshorten.findOne({ url_shorten: shortener }, (err, url) => {
       if (err) return console.error(err)
 
       if (url) {
-        return res.render('index', { shortener: `https://pacific-fortress-07436.herokuapp.com/${url.url_shorten}` })
+        //如果產生過，則重新執行該post指令
+        return res.redirect(307, '/');
       } else {
-        // 存入資料庫
+        //如果沒有產生過，則將原網址跟短網址存入資料庫
         const url_shorten = new Urlshorten({
-          url_origin: req.body.urlshorten,
+          url_origin: req.body.originURL,
           url_shorten: shortener
         })
         url_shorten.save(err => {
           if (err) return console.error(err)
-          return res.render('index', { shortener: `https://pacific-fortress-07436.herokuapp.com/${shortener}` })
+          //儲存後，回給使用者短網址
+          return res.render('index', { shortener: `http://localhost:3000/${shortener}` })
         })
       }
     })
